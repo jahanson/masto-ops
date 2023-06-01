@@ -25,7 +25,7 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          service.beta.kubernetes.io/do-loadbalancer-name: "ingress.hsn.dev"
+          service.beta.kubernetes.io/do-loadbalancer-name: "ingress.valinor.social"
         externalTrafficPolicy: Local
 
       publishService:
