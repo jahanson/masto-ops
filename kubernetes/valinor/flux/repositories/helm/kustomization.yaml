@@ -6,10 +6,10 @@ resources:
  - external-secrets.yaml
  - fairwinds.yaml
  - ingress-nginx.yaml
+ - jahanson.yaml
  - jetstack.yaml
 #  - kubernetes-sigs-descheduler.yaml
  - kubernetes-sigs-metrics-server.yaml
- - neoskop.yaml
  - piraeus.yaml
  - stakater.yaml
 #  - weave-gitops.yaml
