@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: cert-manager-webhook-dnsimple
-      version: 0.0.1
+      version: 0.0.2
       interval: 30m
       sourceRef:
         kind: HelmRepository
