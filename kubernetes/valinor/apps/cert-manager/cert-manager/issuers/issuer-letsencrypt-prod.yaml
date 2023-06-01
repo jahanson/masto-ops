@@ -17,8 +17,5 @@ spec:
               tokenSecretRef:
                 key: api-token
                 name: dnsimple-api-token
-            selector:
-              dnsZones:
-                - valinor.social
             solverName: dnsimple
             groupName: acme.jahanson.com
