@@ -39,7 +39,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress.hsn.dev
         hosts:
-          - host: &host "echo-server.hsn.dev"
+          - host: &host "echo-server.valinor.social"
             paths:
               - path: /
         tls:
