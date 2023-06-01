@@ -9,11 +9,11 @@ spec:
   chart:
     spec:
       chart: cert-manager-webhook-dnsimple
-      version: 0.1.1
+      version: 0.0.1
       interval: 30m
       sourceRef:
         kind: HelmRepository
-        name: neoskop
+        name: jahanson
         namespace: flux-system
 
   values:
@@ -32,8 +32,3 @@ spec:
           secretKeyRef:
             name: dnsimple-api-token
             key: letsencrypt-email
-      staging:
-        enabled: true
-      production:
-        enabled: true
-    

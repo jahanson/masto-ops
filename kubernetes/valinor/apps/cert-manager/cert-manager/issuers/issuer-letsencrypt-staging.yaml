@@ -25,3 +25,4 @@ spec:
               dnsZones:
                 - valinor.social
             solverName: dnsimple
+            groupName: acme.jahanson.com
