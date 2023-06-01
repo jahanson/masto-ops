@@ -21,8 +21,8 @@ spec:
     crds: CreateReplace
   values:
     replicaCount: 2
-    serviceMonitor:
-      create: true
+    # serviceMonitor:
+      # create: true
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
