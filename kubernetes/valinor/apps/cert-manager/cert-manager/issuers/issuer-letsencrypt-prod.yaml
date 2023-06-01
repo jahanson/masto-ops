@@ -5,11 +5,7 @@ metadata:
   name: letsencrypt-production
 spec:
   acme:
-    email: 
-      valueFrom:
-        secretKeyRef:
-          name: dnsimple-api-token
-          key: letsencrypt-email
+    email: "joe@veri.dev"
     preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-production

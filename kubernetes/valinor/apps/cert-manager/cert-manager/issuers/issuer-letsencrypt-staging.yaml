@@ -5,11 +5,6 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    email: 
-      valueFrom:
-        secretKeyRef:
-          name: dnsimple-api-token
-          key: letsencrypt-email
     preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-staging
