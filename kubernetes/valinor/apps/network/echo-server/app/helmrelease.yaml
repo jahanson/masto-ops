@@ -37,7 +37,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.hsn.dev
+          external-dns.alpha.kubernetes.io/target: "ingress.valinor.social"
         hosts:
           - host: &host "echo-server.valinor.social"
             paths:
