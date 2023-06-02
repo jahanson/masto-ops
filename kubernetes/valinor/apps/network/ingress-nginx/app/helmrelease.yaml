@@ -26,6 +26,7 @@ spec:
         type: LoadBalancer
         annotations:
           service.beta.kubernetes.io/do-loadbalancer-name: "ingress.valinor.social"
+          service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
         externalTrafficPolicy: Local
 
       publishService:
@@ -40,6 +41,7 @@ spec:
         client-body-timeout: 120
         enable-brotli: "true"
         enable-real-ip: "true"
+        use-proxy-protocol: "true"
         hsts-max-age: "31449600"
         keep-alive: 120
         keep-alive-requests: 10000
