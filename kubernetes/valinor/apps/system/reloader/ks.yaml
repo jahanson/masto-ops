@@ -13,6 +13,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: masto-ops-valinor
-  dependsOn:
-    - name: cluster-apps-snapshot-controller
   wait: true
