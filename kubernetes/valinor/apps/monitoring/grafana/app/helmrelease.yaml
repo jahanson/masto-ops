@@ -130,6 +130,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
+      annotations:
+          external-dns.alpha.kubernetes.io/target: "ingress.valinor.social"
       hosts:
         - &host grafana.valinor.social
       tls:
