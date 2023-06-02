@@ -53,15 +53,15 @@ spec:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          # - access: proxy
-          #   isDefault: true
-          #   name: Prometheus
-          #   type: prometheus
-          #   url: http://thanos-query.monitoring:9090
-          # - access: proxy
-          #   name: Loki
-          #   type: loki
-          #   url: http://loki-gateway.monitoring.svc.cluster.local:80
+          - access: proxy
+            isDefault: true
+            name: Prometheus
+            type: prometheus
+            url: http://thanos-query.monitoring:9090
+          - access: proxy
+            name: Loki
+            type: loki
+            url: http://loki-gateway.monitoring.svc.cluster.local:80
           - name: Alertmanager
             type: alertmanager
             access: proxy
@@ -108,10 +108,10 @@ spec:
         api_url: # Set by env vars
         use_pkce: true
 
-      # auth.generic_oauth.group_mapping:
-      #   role_attribute_path: |
-      #     contains("https://hsndev/groups"[*], 'grafana-admin') && 'Admin' || contains("https://hsndev/groups"[*], 'grafana-viewer') && 'Viewer'
-      #   org_id: 1
+      auth.generic_oauth.group_mapping:
+        role_attribute_path: |
+          contains("https://hsndev/groups"[*], 'grafana-admin') && 'Admin' || contains("https://hsndev/groups"[*], 'grafana-viewer') && 'Viewer'
+        org_id: 1
       grafana_net:
         url: https://grafana.net
       log:
@@ -157,11 +157,11 @@ spec:
       pspEnabled: false
 
     resources:
-      limits:
-        memory: 219M
       requests:
         cpu: 23m
         memory: 127M
+      limits:
+        memory: 219M
 
     serviceMonitor:
       enabled: true
