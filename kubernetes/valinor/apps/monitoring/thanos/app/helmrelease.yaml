@@ -69,7 +69,7 @@ spec:
           memory: 100Mi
         limits:
           cpu: 96m
-          memory: 100Mi
+          memory: 1024Mi
       persistence:
         enabled: true
         size: 30Gi
