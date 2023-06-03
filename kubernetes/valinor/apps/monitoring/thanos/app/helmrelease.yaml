@@ -66,10 +66,10 @@ spec:
       resources:
         requests:
           cpu: 15m
-          memory: 1162M
+          memory: 38Mi
         limits:
           cpu: 96m
-          memory: 4901M
+          memory: 38Mi
       persistence:
         enabled: true
         size: 30Gi
