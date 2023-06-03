@@ -106,7 +106,6 @@ spec:
     prometheusOperator:
       resources:
         requests:
-          cpu: 35m
           memory: 273M
         limits:
           memory: 326M
@@ -138,7 +137,7 @@ spec:
         alertingEndpoints:
           - namespace: monitoring
             name: alertmanager
-            port: 9093
+            port:   093
             apiVersion: v2
 
         enableAdminAPI: true
@@ -151,9 +150,9 @@ spec:
         resources:
           requests:
             cpu: 257m
-            memory: 1024M
+            memory: 642Mi
           limits:
-            memory: 1024M
+            memory: 642Mi
         retention: 2d
         retentionSize: "6GB"
         ruleSelectorNilUsesHelmValues: false
