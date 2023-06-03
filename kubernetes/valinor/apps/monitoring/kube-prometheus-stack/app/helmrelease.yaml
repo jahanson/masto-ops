@@ -137,7 +137,7 @@ spec:
         alertingEndpoints:
           - namespace: monitoring
             name: alertmanager
-            port:   093
+            port: 9093
             apiVersion: v2
 
         enableAdminAPI: true
