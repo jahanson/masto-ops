@@ -190,7 +190,7 @@ spec:
           - target: # adding tailscale sidecar
               kind: Statefulset
               name: prometheus-kube-prometheus-stack-prometheus
-            patch:
+            patch: |
               - op: add
                 path: /spec/template/spec/containers/-
                 value:
