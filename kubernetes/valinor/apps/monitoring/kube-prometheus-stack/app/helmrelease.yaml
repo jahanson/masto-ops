@@ -163,39 +163,14 @@ spec:
             spec:
               resources:
                 requests:
-                  storage: 30Gi
-        thanos:
-          image: quay.io/thanos/thanos:v0.31.0@sha256:e7d337d6ac2aea3f0f9314ec9830291789e16e2b480b9d353be02d05ce7f2a7e
-          # renovate: datasource=docker depName=quay.io/thanos/thanos
-          version: "v0.31.0"
-          valuesFrom:
-            - kind: Secret
-              name: thanos-secret
-              valuesKey: S3_BUCKET_NAME
-              targetPath: objectStorageConfig.config.bucket
-            - kind: Secret
-              name: thanos-secret
-              valuesKey: S3_BUCKET_HOST
-              targetPath: objectStorageConfig.config.endpoint
-            - kind: Secret
-              name: thanos-secret
-              valuesKey: S3_BUCKET_REGION
-              targetPath: objectStorageConfig.config.region
-            - kind: Secret
-              name: thanos-secret
-              valuesKey: S3_ACCESS_KEY
-              targetPath: objectStorageConfig.config.access_key
-            - kind: Secret
-              name: thanos-secret
-              valuesKey: S3_SECRET_KEY
-              targetPath: objectStorageConfig.config.secret_key
-              walCompression: true
+                  storage: 10Gi
+        walCompression: true
 
       thanosService:
-        enabled: true
+        enabled: false
 
       thanosServiceMonitor:
-        enabled: true
+        enabled: false
 
   postRenderers:
     - kustomize:
