@@ -10,7 +10,7 @@ spec:
   containers:
     - name: tailscale
       imagePullPolicy: Always
-      image: "ghcr.io/tailscale/tailscale:v1.40.1"
+      image: "ghcr.io/tailscale/tailscale:v1.42.0"
       env:
         - name: TZ
           value: "America/Los_Angeles"
@@ -26,7 +26,7 @@ spec:
         # 10.124.0.0/20 host cidr
         # 10.245.0.0/16 service cidr
         - name: TS_EXTRA_ARGS
-          value: "--advertise-exit-node"
+          value: "--advertise-exit-node --accept-routes"
       envFrom:
         - secretRef:
             name: tailscale-auth
