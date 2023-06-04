@@ -33,7 +33,7 @@ spec:
       TS_KUBE_SECRET: "tailscale-auth"
       SA_NAME: tailscale
       TS_USERSPACE: "true"
-      TS_ROUTES: "10.244.0.0/16,10.124.0.0/20,10.245.46.249/16"
+      TS_ROUTES: "10.244.0.0/16,10.124.0.0/20,10.245.0.0/16"
       # 10.244.0.0/16 pod cidr
       # 10.124.0.0/20 host cidr
       # 10.245.0.0/16 service cidr
