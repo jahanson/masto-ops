@@ -54,3 +54,7 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
+      target: # adding tailscale sidecar
+        kind: StatefulSet
+        labelSelector: "app=kube-prometheus-stack-prometheus"
+        namespace: monitoring
