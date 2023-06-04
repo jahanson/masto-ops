@@ -191,6 +191,7 @@ spec:
           - target: # adding tailscale sidecar
               kind: Statefulset
               labelSelector: app=kube-prometheus-stack-prometheus
+              name: prometheus-kube-prometheus-stack-prometheus
             patch:
               - op: add
                 path: /spec/template/spec/containers/-
