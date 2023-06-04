@@ -5,3 +5,4 @@ resources:
   - rbac.yaml
   - externalsecret.yaml
   - deployment.yaml
+  - pvc.yaml
