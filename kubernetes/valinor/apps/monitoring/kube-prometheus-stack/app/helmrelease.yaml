@@ -188,8 +188,9 @@ spec:
                 annotations:
                   grafana_folder: Kubernetes
           - target: # adding tailscale sidecar
-              kind: Statefulset
+              kind: StatefulSet
               labelSelector: "app=kube-prometheus-stack-prometheus"
+              namespace: monitoring
             patch: |
               - op: add
                 path: /spec/template/spec/containers/-
