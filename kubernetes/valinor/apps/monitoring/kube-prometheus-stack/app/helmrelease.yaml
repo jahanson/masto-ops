@@ -189,7 +189,7 @@ spec:
                   grafana_folder: Kubernetes
           - target: # adding tailscale sidecar
               kind: Statefulset
-              name: prometheus-kube-prometheus-stack-prometheus
+              labelSelector: app=kube-prometheus-stack-prometheus
             patch: |
               - op: add
                 path: /spec/template/spec/containers/-
