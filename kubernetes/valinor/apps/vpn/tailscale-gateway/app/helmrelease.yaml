@@ -46,7 +46,7 @@ spec:
       main:
         ports:
           http:
-            port: &port 45387
+            port: &port 58784
 
     podSecurityContext:
       runAsUser: 1000
