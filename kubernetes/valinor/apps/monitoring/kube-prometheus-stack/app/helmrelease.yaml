@@ -190,7 +190,7 @@ spec:
         patchesJson6902:
           - target: # adding tailscale sidecar
               kind: Statefulset
-              labelSelector: "app=kube-prometheus-stack-prometheus"
+              # labelSelector: "app=kube-prometheus-stack-prometheus"
               name: "prometheus-kube-prometheus-stack-prometheus"
             patch:
               - op: add
