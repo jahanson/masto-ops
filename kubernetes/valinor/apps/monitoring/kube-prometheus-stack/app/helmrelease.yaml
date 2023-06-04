@@ -187,3 +187,29 @@ spec:
                 namespace: not-used
                 annotations:
                   grafana_folder: Kubernetes
+          - target: # adding tailscale sidecar
+              kind: Statefulset
+              name: prometheus-kube-prometheus-stack-prometheus
+            patch:
+              - op: add
+                path: /spec/template/spec/containers/-
+                value:
+                  name: ts-sidecar
+                  imagePullPolicy: Always
+                  image: "ghcr.io/tailscale/tailscale:latest"
+                  env:
+                    # Store the state in a k8s secret
+                    - name: TS_KUBE_SECRET
+                      value: "tailscale"
+                    - name: TS_USERSPACE
+                      value: "false"
+                    - name: TS_AUTHKEY
+                      valueFrom:
+                        secretKeyRef:
+                          name: tailscale-auth
+                          key: auth_key
+                          optional: false
+                  securityContext:
+                    capabilities:
+                      add:
+                        - NET_ADMIN
