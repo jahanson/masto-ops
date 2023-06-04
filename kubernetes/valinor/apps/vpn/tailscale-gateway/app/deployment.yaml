@@ -22,7 +22,7 @@ spec:
             - name: TZ
               value: "America/Los_Angeles"
             - name: TS_KUBE_SECRET
-              value: "tailscale-auth"
+              value: "tailscale-state"
             - name: SA_NAME
               value: tailscale
             - name: TS_USERSPACE
@@ -47,13 +47,3 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: tailscale-pvc
-            reclaimPolicy: Retain
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: tailscale-pvc
-      mountPath: /tmp
