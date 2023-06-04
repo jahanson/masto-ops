@@ -147,7 +147,7 @@ spec:
               - name: TZ
                 value: "America/Los_Angeles"
               - name: TS_KUBE_SECRET
-                value: "tailscale-prometheus"
+                value: "tailscale-state"
               - name: SA_NAME
                 value: tailscale
               - name: TS_USERSPACE
