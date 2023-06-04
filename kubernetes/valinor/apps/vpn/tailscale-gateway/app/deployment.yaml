@@ -33,7 +33,7 @@ spec:
               # 10.124.0.0/20 host cidr
               # 10.245.0.0/16 service cidr
             - name: TS_EXTRA_ARGS
-              value: "--advertise-exit-node --accept-routes"
+              value: "--advertise-exit-node --accept-routes --statedir=/data/state"
           envFrom:
             - secretRef:
                 name: tailscale-auth
@@ -47,3 +47,13 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: tailscale-pvc
+            reclaimPolicy: Retain
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: tailscale-pvc
+      mountPath: /data
