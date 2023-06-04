@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - rbac.yaml
   - externalsecret.yaml
-  - helmrelease.yaml
+  - pod.yaml
