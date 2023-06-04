@@ -23,6 +23,9 @@ subjects:
   - kind: ServiceAccount
     name: "tailscale"
     namespace: monitoring
+  - kind: ServiceAccount
+    name: "kube-prometheus-stack-prometheus"
+    namespace: monitoring
 roleRef:
   kind: Role
   name: tailscale
