@@ -134,6 +134,7 @@ spec:
               - *host_prometheus
 
       prometheusSpec:
+        serviceAccount: tailscale
         remoteWrite:
           - url: http://10.45.0.30:19291
         alertingEndpoints:
@@ -150,10 +151,8 @@ spec:
                 value: "America/Los_Angeles"
               - name: TS_KUBE_SECRET
                 value: "tailscale-state"
-              - name: SA_NAME
-                value: tailscale
               - name: TS_USERSPACE
-                value: "true"
+                value: "false"
               - name: TS_EXTRA_ARGS
                 value: "--accept-routes"
             envFrom:
@@ -167,8 +166,9 @@ spec:
                 cpu: 100m
                 memory: 128Mi
             securityContext:
-              runAsUser: 1000
-              runAsGroup: 1000
+              capabilities:
+                add:
+                  - NET_ADMIN
 
         enableAdminAPI: true
         externalLabels:
