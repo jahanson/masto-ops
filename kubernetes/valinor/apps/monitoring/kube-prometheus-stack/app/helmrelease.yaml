@@ -134,6 +134,8 @@ spec:
               - *host_prometheus
 
       prometheusSpec:
+        remoteWrite:
+          - url: http://10.40.0.30:19291
         alertingEndpoints:
           - namespace: monitoring
             name: alertmanager
