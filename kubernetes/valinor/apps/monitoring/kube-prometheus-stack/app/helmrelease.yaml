@@ -165,10 +165,10 @@ spec:
               limits:
                 cpu: 100m
                 memory: 128Mi
-            securityContext:
-              capabilities:
-                add:
-                  - NET_ADMIN
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
 
         enableAdminAPI: true
         externalLabels:
