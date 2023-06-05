@@ -134,7 +134,6 @@ spec:
               - *host_prometheus
 
       prometheusSpec:
-        hostNetwork: true
         remoteWrite:
           - url: http://10.45.0.30:19291
         alertingEndpoints:
@@ -142,33 +141,6 @@ spec:
             name: alertmanager
             port: 9093
             apiVersion: v2
-        containers:
-          - name: tailscale
-            imagePullPolicy: Always
-            image: "ghcr.io/tailscale/tailscale:v1.42.0"
-            env:
-              - name: TS_KUBE_SECRET
-                value: "tailscale-state"
-              - name: SA_NAME
-                value: tailscale
-              - name: TS_USERSPACE
-                value: "false"
-              - name: TS_EXTRA_ARGS
-                value: "--accept-routes"
-            envFrom:
-              - secretRef:
-                  name: tailscale-auth
-            resources:
-              requests:
-                cpu: 100m
-                memory: 50Mi
-              limits:
-                cpu: 100m
-                memory: 128Mi
-            securityContext:
-              capabilities:
-                add:
-                  - NET_ADMIN
 
         enableAdminAPI: true
         externalLabels:
