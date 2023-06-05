@@ -153,7 +153,7 @@ spec:
               - name: SA_NAME
                 value: tailscale
               - name: TS_USERSPACE
-                value: "true"
+                value: "false"
               - name: TS_EXTRA_ARGS
                 value: "--accept-routes"
             envFrom:
@@ -167,8 +167,9 @@ spec:
                 cpu: 100m
                 memory: 128Mi
             securityContext:
-              runAsUser: 1000
-              runAsGroup: 1000
+              capabilities:
+                add:
+                  - NET_ADMIN
 
         enableAdminAPI: true
         externalLabels:
