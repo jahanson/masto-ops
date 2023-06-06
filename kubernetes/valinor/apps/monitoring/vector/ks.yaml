@@ -5,9 +5,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: "./kubernetes/cluster-0/apps/monitoring/vector/agent"
+  path: "./kubernetes/valinor/apps/monitoring/vector/agent"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: masto-ops-valinor
   wait: false # no flux ks dependents
