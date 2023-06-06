@@ -5,7 +5,7 @@ namespace: monitoring
 resources:
   - ./helmrelease.yaml
   - ./rbac.yaml
-  - ./external-secret.yaml
+  - ./externalsecret.yaml
 configMapGenerator:
   - name: vector-agent-configmap
     files:
