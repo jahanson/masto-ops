@@ -5,6 +5,5 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  # - ./alertmanager/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
+  - ./alertmanager/ks.yaml
   - ./node-exporter/ks.yaml
