@@ -29,12 +29,16 @@ spec:
     args: ["--config", "/etc/vector/vector.yaml"]
 
     sidecars:
-      - name: tailscale
+      tailscale:
         imagePullPolicy: Always
         image: "ghcr.io/tailscale/tailscale:v1.42.0"
         env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
           - name: TS_KUBE_SECRET
-            value: "tailscale-state"
+            value: "tailscale-state-$(MY_NODE_NAME)"
           - name: TS_USERSPACE
             value: "false"
           - name: TS_EXTRA_ARGS
