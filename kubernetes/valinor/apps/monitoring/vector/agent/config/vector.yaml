@@ -16,5 +16,5 @@ sinks:
     compression: true
     inputs:
       - kubernetes_logs
-    address: "10.45.0.2:6000"
+    address: "100.77.50.79:6000"
     version: "2"
