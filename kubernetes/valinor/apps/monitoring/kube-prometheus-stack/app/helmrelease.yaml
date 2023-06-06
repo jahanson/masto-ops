@@ -216,3 +216,17 @@ spec:
                 namespace: not-used
                 annotations:
                   grafana_folder: Kubernetes
+        patchesStrategicMerge:
+          - kind: StatefulSet
+            apiVersion: apps/v1
+            metadata:
+              name: prometheus-kube-prometheus-stack-prometheus
+              namespace: default
+            spec:
+              template:
+                spec:
+                  securityContext:
+                    capabilities:
+                      add:
+                        - NET_ADMIN
+                    allowPrivilegeEscalation: true
