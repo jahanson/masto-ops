@@ -70,14 +70,10 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: app
+                - key: app.kubernetes.io/name
                   operator: In
                   values:
-                    - mastodon
-                - key: component
-                  operator: In
-                  values:
-                    - web
+                    - mastodon-web
             topologyKey: kubernetes.io/hostname
     sidecars:
       tailscale:
