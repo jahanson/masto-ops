@@ -53,9 +53,7 @@ spec:
           name: mastodon-secret
     service:
       main:
-        ports:
-          http:
-            enabled: false
+        enabled: false
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
