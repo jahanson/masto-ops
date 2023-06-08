@@ -7,6 +7,7 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: ingress.valinor.social
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.org/websocket-services: "mastodon-streaming"
 spec:
   ingressClassName: "nginx"
   tls:
