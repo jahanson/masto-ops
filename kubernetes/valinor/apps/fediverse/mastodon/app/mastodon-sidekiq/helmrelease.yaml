@@ -62,14 +62,9 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: app
+                - key: app.kubernetes.io/name
                   operator: In
-                  values:
-                    - mastodon
-                - key: component
-                  operator: In
-                  values:
-                    - sidekiq
+                  values: ["mastodon-sidekiq"]
             topologyKey: kubernetes.io/hostname
     resources:
       requests:

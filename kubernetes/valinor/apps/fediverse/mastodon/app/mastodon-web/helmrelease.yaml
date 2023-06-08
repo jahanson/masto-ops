@@ -72,8 +72,7 @@ spec:
               matchExpressions:
                 - key: app.kubernetes.io/name
                   operator: In
-                  values:
-                    - mastodon-web
+                  values: ["mastodon-web"]
             topologyKey: kubernetes.io/hostname
     sidecars:
       tailscale:
