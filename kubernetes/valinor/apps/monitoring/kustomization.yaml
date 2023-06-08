@@ -6,5 +6,5 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   # - ./alertmanager/ks.yaml
-  - ./node-exporter/ks.yaml
+  # - ./node-exporter/ks.yaml
   - ./vector/ks.yaml
