@@ -1,0 +1,99 @@
+---
+apiVersion: apps/v1
+kind: HelmRelease
+metadata:
+  name: &app mastodon-sidekiq
+  namespace: fediverse
+  labels:
+    app: mastodon
+    component: sidekiq
+spec:
+  interval: 30m
+  values:
+    controller:
+      replicas: 1
+      strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: "true"
+      labels:
+        app: mastodon
+        component: sidekiq
+    image:
+      repository: ghcr.io/mastodon/mastodon
+      tag: v4.1.2
+    command: [
+      "bundle",
+      "exec",
+      "sidekiq",
+      "-c",
+      "25",
+      "-q",
+      "default,8",
+      "-q",
+      "push,6",
+      "-q",
+      "ingress,4",
+      "-q",
+      "mailers,2",
+      "-q",
+      "pull",
+      "-q",
+      "scheduler"
+    ]
+    envFrom:
+      - secretRef:
+          name: mastodon-secret
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - mastodon
+                - key: component
+                  operator: In
+                  values:
+                    - sidekiq
+            topologyKey: kubernetes.io/hostname
+    resources:
+      requests:
+        cpu: 48m
+        memory: 250M
+      limits:
+        memory: 972M
+    sidecars:
+      tailscale:
+        imagePullPolicy: Always
+        image: "ghcr.io/tailscale/tailscale:v1.42.0"
+        env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: TS_KUBE_SECRET
+            value: "tailscale-state-$(MY_NODE_NAME)-mastodon-sidekiq"
+          - name: TS_USERSPACE
+            value: "false"
+          - name: TS_EXTRA_ARGS
+            value: "--accept-routes"
+        envFrom:
+          - secretRef:
+              name: tailscale-auth
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN

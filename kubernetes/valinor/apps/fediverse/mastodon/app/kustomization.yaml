@@ -5,3 +5,4 @@ namespace: fediverse
 resources:
   - ./ingress.yaml
   - ./externalsecret.yaml
+  - ./rbac.yaml

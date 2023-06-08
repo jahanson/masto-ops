@@ -1,0 +1,99 @@
+---
+apiVersion: apps/v1
+kind: HelmRelease
+metadata:
+  name: mastodon-web
+  namespace: fediverse
+  labels:
+    app: mastodon
+    component: web
+spec:
+  interval: 30m
+  values:
+    controller:
+      replicas: 2
+      strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: "true"
+      labels:
+        app: mastodon
+        component: web
+    image:
+      repository: ghcr.io/mastodon/mastodon
+      tag: v4.1.2
+    command:
+      - bundle
+      - exec
+      - puma
+      - -C
+      - config/puma.rb
+    envFrom:
+      - secretRef:
+          name: mastodon-secret
+    resources:
+      requests:
+        cpu: 15m
+        memory: 50Mi
+      limits:
+        memory: 250Mi
+    service:
+      main:
+        ports:
+          http:
+            port: 3000
+    livenessProbe:
+      tcpSocket:
+        port: http
+    readinessProbe:
+      httpGet:
+        path: /health
+        port: http
+    startupProbe:
+      httpGet:
+        path: /health
+        port: http
+      failureThreshold: 30
+      periodSeconds: 5
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - mastodon
+                - key: component
+                  operator: In
+                  values:
+                    - web
+            topologyKey: kubernetes.io/hostname
+    sidecars:
+      tailscale:
+        imagePullPolicy: Always
+        image: "ghcr.io/tailscale/tailscale:v1.42.0"
+        env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: TS_KUBE_SECRET
+            value: "tailscale-state-$(MY_NODE_NAME)-mastodon-web"
+          - name: TS_USERSPACE
+            value: "false"
+          - name: TS_EXTRA_ARGS
+            value: "--accept-routes"
+        envFrom:
+          - secretRef:
+              name: tailscale-auth
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN

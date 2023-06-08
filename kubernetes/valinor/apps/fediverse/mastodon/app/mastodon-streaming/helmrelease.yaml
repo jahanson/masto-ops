@@ -1,0 +1,100 @@
+---
+apiVersion: apps/v1
+kind: HelmRelease
+metadata:
+  name: &app mastodon-streaming
+  namespace: fediverse
+  labels:
+    app: mastodon
+    component: streaming
+spec:
+  interval: 30m
+  values:
+    controller:
+      replicas: 2
+      strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: "true"
+      labels:
+        app: mastodon
+        component: streaming
+    image:
+      repository: ghcr.io/mastodon/mastodon
+      tag: v4.1.2
+    command: [
+      "node",
+      "./streaming"
+    ]
+    envFrom:
+      - secretRef:
+          name: mastodon-secret
+    env:
+      - name: "DB_SSLMODE"
+        value: "no-verify"
+      - name: "NODE_TLS_REJECT_UNAUTHORIZED"
+        value: "0"
+    livenessProbe:
+      httpGet:
+        path: /api/v1/streaming/health
+        port: streaming
+    readinessProbe:
+      httpGet:
+        path: /api/v1/streaming/health
+        port: streaming
+    resources:
+      requests:
+        cpu: 15m
+        memory: 50Mi
+      limits:
+        cpu: 500m
+        memory: 250Mi
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          streaming:
+            port: 4000
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - mastodon
+                - key: component
+                  operator: In
+                  values:
+                    - streaming
+            topologyKey: kubernetes.io/hostname
+    sidecars:
+      tailscale:
+        imagePullPolicy: Always
+        image: "ghcr.io/tailscale/tailscale:v1.42.0"
+        env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: TS_KUBE_SECRET
+            value: "tailscale-state-$(MY_NODE_NAME)-mastodon-streaming"
+          - name: TS_USERSPACE
+            value: "false"
+          - name: TS_EXTRA_ARGS
+            value: "--accept-routes"
+        envFrom:
+          - secretRef:
+              name: tailscale-auth
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
