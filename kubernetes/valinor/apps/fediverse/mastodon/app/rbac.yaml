@@ -22,7 +22,7 @@ subjects:
     name: "tailscale"
     namespace: fediverse
   - kind: ServiceAccount
-    name: "vector-agent"
+    name: "mastodon"
     namespace: fediverse
 roleRef:
   kind: Role
@@ -33,4 +33,10 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tailscale
+  namespace: fediverse
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mastodon
   namespace: fediverse

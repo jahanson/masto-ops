@@ -54,6 +54,9 @@ spec:
     service:
       main:
         enabled: false
+    serviceAccount:
+      create: false
+      name: mastodon
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:

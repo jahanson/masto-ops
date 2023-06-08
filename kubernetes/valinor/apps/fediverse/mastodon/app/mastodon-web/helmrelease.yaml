@@ -49,6 +49,9 @@ spec:
         ports:
           http:
             port: 3000
+    serviceAccount:
+      create: false
+      name: mastodon
     livenessProbe:
       tcpSocket:
         port: http
