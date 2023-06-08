@@ -16,7 +16,7 @@ spec:
       interval: 30m
   values:
     controller:
-      replicaCount: 1
+      replicaCount: 3
 
       updateStrategy:
         type: RollingUpdate
