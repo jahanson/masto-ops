@@ -27,6 +27,9 @@ spec:
 
     env:
       NUXT_PUBLIC_DEFAULT_SERVER: "valinor.social"
+    envFrom:
+      - secretRef:
+          name: elk-secret
 
     podSecurityContext:
       runAsUser: 911

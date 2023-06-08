@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: fediverse
 resources:
   - ./helmrelease.yaml
+  - ./externalsecret.yaml
