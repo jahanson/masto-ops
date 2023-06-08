@@ -52,19 +52,19 @@ spec:
     serviceAccount:
       create: false
       name: mastodon
-    livenessProbe:
-      tcpSocket:
-        port: http
-    readinessProbe:
-      httpGet:
-        path: /health
-        port: http
-    startupProbe:
-      httpGet:
-        path: /health
-        port: http
-      failureThreshold: 30
-      periodSeconds: 5
+    # livenessProbe:
+    #   tcpSocket:
+    #     port: http
+    # readinessProbe:
+    #   httpGet:
+    #     path: /health
+    #     port: http
+    # startupProbe:
+    #   httpGet:
+    #     path: /health
+    #     port: http
+    #   failureThreshold: 30
+    #   periodSeconds: 5
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
