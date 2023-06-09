@@ -1,2 +1,2 @@
-# valinor
+# masto-ops
 Mastodon on Kubernetes
