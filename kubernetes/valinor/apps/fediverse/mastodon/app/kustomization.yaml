@@ -7,4 +7,3 @@ resources:
   - ./externalsecret.yaml
   - ./rbac.yaml
   - ./dragonfly.yaml
-  - ./elasticsearch.yaml
