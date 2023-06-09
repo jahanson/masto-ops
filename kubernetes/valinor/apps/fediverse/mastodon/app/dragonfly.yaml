@@ -1,0 +1,20 @@
+apiVersion: dragonflydb.io/v1alpha1
+kind: Dragonfly
+metadata:
+  namespace: fediverse
+  labels:
+    app.kubernetes.io/name: dragonfly
+    app.kubernetes.io/instance: dragonfly-valinor
+    app.kubernetes.io/part-of: dragonfly-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: dragonfly-operator
+  name: dragonfly-valinor
+spec:
+  replicas: 2
+  resources:
+    requests:
+      cpu: 50m
+      memory: 500Mi
+    limits:
+      cpu: 600m
+      memory: 1Gi

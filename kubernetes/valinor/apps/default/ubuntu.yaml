@@ -11,7 +11,7 @@ spec:
       command: ["/bin/bash", "-c", "while true; do sleep 10; done"]
       resources:
         requests:
-          cpu: 323m
+          cpu: 50m
           memory: 443M
         limits:
           cpu: 323m
@@ -31,7 +31,7 @@ spec:
             name: tailscale-auth
       resources:
         requests:
-          cpu: 100m
+          cpu: 50m
           memory: 50Mi
         limits:
           cpu: 100m
