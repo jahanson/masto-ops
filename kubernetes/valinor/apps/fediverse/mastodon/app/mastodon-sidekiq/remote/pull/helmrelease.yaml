@@ -2,11 +2,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mastodon-web
+  name: &app mastodon-sidekiq-remote-pull
   namespace: fediverse
   labels:
     app: mastodon
-    component: web
+    component: sidekiq
 spec:
   interval: 30m
   chart:
@@ -19,58 +19,43 @@ spec:
         namespace: flux-system
   values:
     controller:
-      replicas: 2
-      strategy: Recreate
+      type: daemonset
+      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
       labels:
         app: mastodon
-        component: web
+        component: sidekiq
     image:
       repository: ghcr.io/mastodon/mastodon
       tag: v4.1.2
-    command:
-      - bundle
-      - exec
-      - puma
-      - -C
-      - config/puma.rb
+    command: ["bundle", "exec", "sidekiq", "-c", "25", "-q", "pull"]
     envFrom:
       - secretRef:
           name: mastodon-secret
-    resources:
-      requests:
-        cpu: 15m
-        memory: 500Mi
-      limits:
-        memory: 1Gi
+    env:
+      - name: DB_NAME
+        value: $(CP_SIDEKIQ_PULL)
     service:
       main:
-        ports:
-          http:
-            port: 3000
+        enabled: false
     serviceAccount:
       create: false
       name: mastodon
-    livenessProbe:
-      tcpSocket:
-        port: http
-    readinessProbe:
-      httpGet:
-        path: /health
-        port: http
-    startupProbe:
-      httpGet:
-        path: /health
-        port: http
-      failureThreshold: 30
-      periodSeconds: 5
     affinity:
-      podAntiAffinity:
+      podAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: app.kubernetes.io/name
+                - key: "doks.digitalocean.com/node-pool"
                   operator: In
-                  values: ["mastodon-web"]
-            topologyKey: kubernetes.io/hostname
+                  values:
+                    - pool-moria-c
+            topologyKey: "kubernetes.io/hostname"
+    resources:
+      requests:
+        cpu: 48m
+        memory: 250M
+      limits:
+        cpu: 800m
+        memory: 972M
