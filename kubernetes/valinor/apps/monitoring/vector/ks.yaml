@@ -11,3 +11,5 @@ spec:
     kind: GitRepository
     name: masto-ops-valinor
   wait: false # no flux ks dependents
+  dependsOn:
+    - name: cluster-apps-external-secrets-stores
