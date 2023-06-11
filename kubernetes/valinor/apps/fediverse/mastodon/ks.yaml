@@ -56,13 +56,67 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-mastodon-sidekiq
+  name: cluster-apps-mastodon-sidekiq-high-priority
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq"
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/local/high-prirority"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: masto-ops-valinor
+  wait: true
+  dependsOn:
+    - name: cluster-apps-external-secrets-stores
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-mastodon-sidekiq-low-volume
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  interval: 10m
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/local/low-volume"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: masto-ops-valinor
+  wait: true
+  dependsOn:
+    - name: cluster-apps-external-secrets-stores
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-mastodon-sidekiq-ingress
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  interval: 10m
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/remote/ingress"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: masto-ops-valinor
+  wait: true
+  dependsOn:
+    - name: cluster-apps-external-secrets-stores
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-mastodon-sidekiq-pull
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  interval: 10m
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/remote/pull"
   prune: true
   sourceRef:
     kind: GitRepository
