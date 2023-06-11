@@ -8,11 +8,11 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/moria/apps/fediverse/mastodon/app/mastodon-sidekiq/local/high-prirority"
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/local/high-prirority"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: masto-ops-moria
+    name: masto-ops-valinor
   wait: true
   dependsOn:
     - name: cluster-apps-external-secrets-stores
@@ -26,11 +26,11 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/moria/apps/fediverse/mastodon/app/mastodon-sidekiq/local/low-volume"
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/local/low-volume"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: masto-ops-moria
+    name: masto-ops-valinor
   wait: true
   dependsOn:
     - name: cluster-apps-external-secrets-stores
@@ -44,7 +44,7 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/moria/apps/fediverse/mastodon/app/mastodon-sidekiq/remote/ingress"
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/remote/ingress"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -62,7 +62,7 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/moria/apps/fediverse/mastodon/app/mastodon-sidekiq/remote/pull"
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/remote/pull"
   prune: true
   sourceRef:
     kind: GitRepository
