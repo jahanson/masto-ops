@@ -10,16 +10,16 @@ metadata:
     app.kubernetes.io/created-by: dragonfly-operator
   name: dragonfly-valinor
 spec:
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: "doks.digitalocean.com/node-pool"
-                operator: In
-                values:
-                  - pool-valinor-g
-          topologyKey: "kubernetes.io/hostname"
+  # affinity:
+  #   podAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       - labelSelector:
+  #           matchExpressions:
+  #             - key: "doks.digitalocean.com/node-pool"
+  #               operator: In
+  #               values:
+  #                 - pool-valinor-g
+  #         topologyKey: "kubernetes.io/hostname"
   replicas: 2
   resources:
     requests:

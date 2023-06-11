@@ -34,6 +34,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-mastodon
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -52,6 +53,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-mastodon
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -70,6 +72,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-mastodon
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -88,6 +91,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-mastodon
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
