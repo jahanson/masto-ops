@@ -62,7 +62,7 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
-  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/local/high-prirority"
+  path: "./kubernetes/valinor/apps/fediverse/mastodon/app/mastodon-sidekiq/local/high-priority"
   prune: true
   sourceRef:
     kind: GitRepository
