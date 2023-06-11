@@ -4,7 +4,7 @@ metadata:
   name: ubuntu-server
   namespace: default
 spec:
-  serviceAccount: tailscale
+  # serviceAccount: tailscale
   containers:
     - name: ubuntu
       image: ubuntu:latest@sha256:dfd64a3b4296d8c9b62aa3309984f8620b98d87e47492599ee20739e8eb54fbf
@@ -16,27 +16,27 @@ spec:
         limits:
           cpu: 323m
           memory: 886M
-    - name: tailscale
-      imagePullPolicy: Always
-      image: "ghcr.io/tailscale/tailscale:v1.42.0"
-      env:
-        - name: TS_KUBE_SECRET
-          value: "tailscale-state"
-        - name: TS_USERSPACE
-          value: "false"
-        - name: TS_EXTRA_ARGS
-          value: "--accept-routes"
-      envFrom:
-        - secretRef:
-            name: tailscale-auth
-      resources:
-        requests:
-          cpu: 50m
-          memory: 50Mi
-        limits:
-          cpu: 100m
-          memory: 128Mi
-      securityContext:
-        capabilities:
-          add:
-            - NET_ADMIN
+    # - name: tailscale
+    #   imagePullPolicy: Always
+    #   image: "ghcr.io/tailscale/tailscale:v1.42.0"
+    #   env:
+    #     - name: TS_KUBE_SECRET
+    #       value: "tailscale-state"
+    #     - name: TS_USERSPACE
+    #       value: "false"
+    #     - name: TS_EXTRA_ARGS
+    #       value: "--accept-routes"
+    #   envFrom:
+    #     - secretRef:
+    #         name: tailscale-auth
+    #   resources:
+    #     requests:
+    #       cpu: 50m
+    #       memory: 50Mi
+    #     limits:
+    #       cpu: 100m
+    #       memory: 128Mi
+    #   securityContext:
+    #     capabilities:
+    #       add:
+    #         - NET_ADMIN
