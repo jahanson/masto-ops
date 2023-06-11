@@ -69,7 +69,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: masto-ops-valinor
-  wait: true
+  wait: false
   dependsOn:
     - name: cluster-apps-external-secrets-stores
     - name: cluster-apps-mastodon
@@ -88,7 +88,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: masto-ops-valinor
-  wait: true
+  wait: false
   dependsOn:
     - name: cluster-apps-external-secrets-stores
     - name: cluster-apps-mastodon
@@ -107,7 +107,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: masto-ops-valinor
-  wait: true
+  wait: false
   dependsOn:
     - name: cluster-apps-external-secrets-stores
 ---
@@ -125,7 +125,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: masto-ops-valinor
-  wait: true
+  wait: false
   dependsOn:
     - name: cluster-apps-external-secrets-stores
 ---
