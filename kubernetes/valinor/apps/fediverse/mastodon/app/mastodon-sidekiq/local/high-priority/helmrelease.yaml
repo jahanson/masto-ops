@@ -38,9 +38,6 @@ spec:
     service:
       main:
         enabled: false
-    serviceAccount:
-      create: false
-      name: mastodon
     affinity:
       podAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
