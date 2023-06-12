@@ -9,7 +9,7 @@ spec:
   transport:
     tls:
       # also used as otherName in Elasticsearch certs
-      commonNameSuffix: ".svc.cluster.local"
+      otherNameSuffix: ".svc.cluster.local"
   nodeSets:
     - name: default
       count: 1
