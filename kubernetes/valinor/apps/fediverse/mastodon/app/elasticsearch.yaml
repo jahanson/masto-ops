@@ -16,6 +16,7 @@ spec:
             username: anonymous
             roles: superuser
             authz_exception: false
+        xpack.ssl.verification_mode: none
       podTemplate:
         spec:
           containers:
