@@ -37,8 +37,7 @@ spec:
       - secretRef:
           name: mastodon-secret
     env:
-      - name: DB_NAME
-        value: "$(CP_SIDEKIQ_INGRESS)"
+      DB_NAME: "$(CP_SIDEKIQ_INGRESS)"
     service:
       main:
         enabled: false

@@ -34,8 +34,7 @@ spec:
       - secretRef:
           name: mastodon-secret
     env:
-      - name: DB_NAME
-        value: "$(CP_SIDEKIQ_PULL)"
+      DB_NAME: "$(CP_SIDEKIQ_PULL)"
     service:
       main:
         enabled: false

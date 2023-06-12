@@ -47,8 +47,7 @@ spec:
       - secretRef:
           name: mastodon-secret
     env:
-      - name: DB_NAME
-        value: "$(CP_SIDEKIQ_LOW_VOLUME)"
+      DB_NAME: "$(CP_SIDEKIQ_LOW_VOLUME)"
     service:
       main:
         enabled: false

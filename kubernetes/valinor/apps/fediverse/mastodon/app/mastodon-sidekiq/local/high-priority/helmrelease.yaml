@@ -34,8 +34,7 @@ spec:
       - secretRef:
           name: mastodon-secret
     env:
-      - name: DB_NAME
-        value: "$(CP_SIDEKIQ_HIGH_PRIORITY)"
+      DB_NAME: "$(CP_SIDEKIQ_HIGH_PRIORITY)"
     service:
       main:
         enabled: false
