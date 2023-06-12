@@ -19,7 +19,7 @@ spec:
         namespace: flux-system
   values:
     controller:
-      type: daemonset
+      replicas: 1
       # My default nodes have 2cpus so it seems easier to scale nodes in the panel
       # rather than messing with tolerations and affinitie. The only reason I can
       # think of to scale nodes is to scale sidekiq.

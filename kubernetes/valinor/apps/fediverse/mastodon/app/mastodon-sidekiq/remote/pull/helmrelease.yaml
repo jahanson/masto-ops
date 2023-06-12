@@ -19,7 +19,7 @@ spec:
         namespace: flux-system
   values:
     controller:
-      type: daemonset
+      replicas: 1
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
