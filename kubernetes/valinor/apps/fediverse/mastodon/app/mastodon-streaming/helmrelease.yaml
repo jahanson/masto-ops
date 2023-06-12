@@ -39,6 +39,7 @@ spec:
     env:
       NODE_TLS_REJECT_UNAUTHORIZED: "0"
       DB_NAME: "$(CP_MASTODON_STREAMING)"
+      DB_PORT: "25061"
     livenessProbe:
       httpGet:
         path: /api/v1/streaming/health

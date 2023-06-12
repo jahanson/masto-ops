@@ -35,6 +35,7 @@ spec:
           name: mastodon-secret
     env:
       DB_NAME: "$(CP_SIDEKIQ_PULL)"
+      DB_PORT: "25061"
     service:
       main:
         enabled: false
