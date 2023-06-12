@@ -4,7 +4,6 @@ metadata:
   name: mastodon-tootctl
   namespace: fediverse
 spec:
-  serviceAccount: mastodon
   containers:
     - name: mastodon-tootctl
       image: tootsuite/mastodon:latest@sha256:6b18e6d0eda476397d48cc36ac040b5da9c73503e374708a815a7f76db740576
