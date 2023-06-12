@@ -41,16 +41,16 @@ spec:
     service:
       main:
         enabled: false
-    affinity:
-      podAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-                - key: "doks.digitalocean.com/node-pool"
-                  operator: In
-                  values:
-                    - pool-moria-c
-            topologyKey: "kubernetes.io/hostname"
+    # affinity:
+    #   podAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       - labelSelector:
+    #           matchExpressions:
+    #             - key: "doks.digitalocean.com/node-pool"
+    #               operator: In
+    #               values:
+    #                 - pool-moria-c
+    #         topologyKey: "kubernetes.io/hostname"
     resources:
       requests:
         cpu: 48m
