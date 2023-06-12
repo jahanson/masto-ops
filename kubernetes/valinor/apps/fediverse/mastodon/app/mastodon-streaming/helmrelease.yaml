@@ -61,9 +61,6 @@ spec:
             enabled: false
           streaming:
             port: 4000
-    serviceAccount:
-      create: false
-      name: mastodon
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
