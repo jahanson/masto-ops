@@ -6,6 +6,10 @@ metadata:
   namespace: fediverse
 spec:
   version: 7.17.9
+  transport:
+    tls:
+      # also used as otherName in Elasticsearch certs
+      commonNameSuffix: ".svc.cluster.local"
   nodeSets:
     - name: default
       count: 1
@@ -16,7 +20,6 @@ spec:
             username: anonymous
             roles: superuser
             authz_exception: false
-        xpack.http.ssl.verification_mode: none
       podTemplate:
         spec:
           containers:
