@@ -38,6 +38,9 @@ spec:
     envFrom:
       - secretRef:
           name: mastodon-secret
+    env:
+      - name: DB_NAME
+        value: "$(CP_MASTODON_WEB)"
     resources:
       requests:
         cpu: 15m
