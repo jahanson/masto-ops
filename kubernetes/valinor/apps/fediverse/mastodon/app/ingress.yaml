@@ -38,6 +38,7 @@ metadata:
   namespace: fediverse
   annotations:
     nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+    external-dns.alpha.kubernetes.io/target: ingress.valinor.social
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'off'
 spec:
