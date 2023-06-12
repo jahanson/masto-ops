@@ -14,7 +14,7 @@ spec:
             name: mastodon-secret
       env:
         - name: DB_NAME
-          value: "mastodon"
+          value: "defaultdb"
         - name: DB_PORT
           value: "25060"
 
