@@ -41,6 +41,7 @@ spec:
     env:
       DB_NAME: "$(CP_MASTODON_WEB)"
       DB_PORT: "25061"
+      PREPARED_STATEMENTS: "false" # neccessary for pgbouncer
     resources:
       requests:
         cpu: 15m

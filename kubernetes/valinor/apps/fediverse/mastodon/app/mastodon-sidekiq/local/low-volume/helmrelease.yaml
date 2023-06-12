@@ -49,6 +49,7 @@ spec:
     env:
       DB_NAME: "$(CP_SIDEKIQ_LOW_VOLUME)"
       DB_PORT: "25061"
+      PREPARED_STATEMENTS: "false" # neccessary for pgbouncer
     service:
       main:
         enabled: false

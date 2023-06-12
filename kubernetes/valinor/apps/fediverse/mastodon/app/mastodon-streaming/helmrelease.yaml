@@ -40,6 +40,7 @@ spec:
       NODE_TLS_REJECT_UNAUTHORIZED: "0"
       DB_NAME: "$(CP_MASTODON_STREAMING)"
       DB_PORT: "25061"
+      PREPARED_STATEMENTS: "false" # neccessary for pgbouncer
     livenessProbe:
       httpGet:
         path: /api/v1/streaming/health
