@@ -6,10 +6,10 @@ metadata:
   namespace: fediverse
 spec:
   version: 7.17.9
-  transport:
+  http:
     tls:
-      # also used as otherName in Elasticsearch certs
-      otherNameSuffix: ".svc.cluster.local"
+      selfSignedCertificate:
+        disabled: true
   nodeSets:
     - name: default
       count: 1
