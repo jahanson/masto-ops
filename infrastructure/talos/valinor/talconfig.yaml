@@ -1,0 +1,87 @@
+---
+clusterName: morgoth
+
+talosVersion: v1.4.5
+kubernetesVersion: 1.27.2
+endpoint: "https://valinor.hsn.dev:6443"
+
+cniConfig:
+  name: none
+
+additionalMachineCertSans:
+  - valinor.hsn.dev
+
+nodes:
+  - hostname: manwe.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 136.243.8.106
+    controlPlane: true
+    installDisk: /dev/sda
+    nameserver: 136.243.8.65
+    networkInterfaces:
+      - interface: enp5s0
+        dhcp: true
+        vlans:
+          - vlanId: 4000
+            mtu: 1400
+            dhcp: false
+            addresses:
+              - 10.1.1.10/24
+  - hostname: varda.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 136.243.88.216
+    controlPlane: true
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: enp5s0
+        dhcp: true
+        vlans:
+          - vlanId: 4000
+            mtu: 1400
+            dhcp: false
+            addresses:
+              - 10.1.1.11/24
+controlPlane:
+  patches:
+    - |-
+      cluster:
+        allowSchedulingOnMasters: true
+        proxy:
+          disabled: true
+        etcd:
+          advertisedSubnets:
+            - 10.1.1.0/24
+        extraManifests:
+          - https://raw.githubusercontent.com/jahanson/home-ops/main/infrastructure/talos/morgoth/integrations/cni/cilium.yaml
+          - https://raw.githubusercontent.com/jahanson/home-ops/main/infrastructure/talos/morgoth/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
+    - |-
+      machine:
+        files:
+          - op: create
+            path: /etc/cri/conf.d/20-customization.part
+            content: |
+              [plugins]
+                [plugins."io.containerd.grpc.v1.cri"]
+                  enable_unprivileged_ports = true
+                  enable_unprivileged_icmp = true
+        kubelet:
+          extraArgs:
+            feature-gates: CronJobTimeZone=true,GracefulNodeShutdown=true,NewVolumeManagerReconstruction=false
+            rotate-server-certificates: "true"
+          extraConfig:
+            maxPods: 150
+        network:
+          extraHostEntries:
+            - ip: ${clusterEndpointIP}
+              aliases:
+                - morgoth.jahanson.tech
+        sysctls:
+          fs.inotify.max_user_watches: "1048576"
+          fs.inotify.max_user_instances: "8192"
+        time:
+          disabled: false
+          servers:
+            - 10.1.1.1
+    - |-
+      - op: remove
+        path: /cluster/apiServer/admissionControl

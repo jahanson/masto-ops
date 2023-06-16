@@ -1,0 +1,5 @@
+---
+providerRegex: |
+  ^(manwe|varda)$
+
+bypassDnsResolution: true
