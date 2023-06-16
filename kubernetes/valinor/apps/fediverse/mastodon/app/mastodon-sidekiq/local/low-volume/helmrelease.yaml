@@ -53,16 +53,8 @@ spec:
     service:
       main:
         enabled: false
-    # affinity:
-    #   podAffinity:
-    #     requiredDuringSchedulingIgnoredDuringExecution:
-    #       - labelSelector:
-    #           matchExpressions:
-    #             - key: "doks.digitalocean.com/node-pool"
-    #               operator: In
-    #               values:
-    #                 - pool-valinor-g
-    #         topologyKey: "kubernetes.io/hostname"
+    nodeSelector:
+      doks.digitalocean.com/node-pool: pool-valinor
     resources:
       requests:
         cpu: 48m
