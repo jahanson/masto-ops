@@ -5,4 +5,4 @@ metadata:
   name: main-pool
 spec:
   cidrs:
-    - cidr: 10.45.0.0/28
+    - cidr: 168.119.17.0/29
