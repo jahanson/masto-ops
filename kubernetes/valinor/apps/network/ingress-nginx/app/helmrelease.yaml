@@ -22,14 +22,13 @@ spec:
         type: RollingUpdate
 
       service:
-        main:
-          ports:
-            http:
-              port: &http 81
-              hostPort: *http
-            https:
-              port: &https 444
-              hostPort: *https
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "ingress.valinor.social"
+          # io.cilium/lb-ipam-ips: "168.119.17.6"
+          metallb.universe.tf/loadBalancerIPs: "168.119.17.6"
+        externalTrafficPolicy: Local
 
       publishService:
         enabled: true
