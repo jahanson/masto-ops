@@ -20,9 +20,9 @@ spec:
 
       hostPort:
         enabled: true
-      ports:
-        http: 81
-        https: 444
+        ports:
+          http: 81
+          https: 444
 
       updateStrategy:
         type: RollingUpdate
