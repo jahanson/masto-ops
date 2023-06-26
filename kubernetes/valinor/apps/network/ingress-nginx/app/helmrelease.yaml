@@ -27,11 +27,9 @@ spec:
             http:
               port: &http 81
               hostPort: *http
-              containerPort: *http
             https:
               port: &https 444
               hostPort: *https
-              containerPort: *https
 
       publishService:
         enabled: true
