@@ -11,6 +11,10 @@ includes:
   externalsecrets: .taskfiles/externalsecrets/tasks.yaml
   volsync: .taskfiles/volsync/tasks.yaml
   precommit: .taskfiles/precommit/tasks.yml
+  rook:
+    taskfile: ".taskfiles/rook"
+    dir: .taskfiles/rook
+
 
 tasks:
   default:
