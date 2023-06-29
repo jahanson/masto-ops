@@ -1,5 +1,5 @@
 ---
-clusterName: morgoth
+clusterName: valinor
 
 talosVersion: v1.4.5
 kubernetesVersion: 1.27.2
@@ -12,35 +12,95 @@ additionalMachineCertSans:
   - valinor.hsn.dev
 
 nodes:
-  - hostname: manwe.hsn.dev
-    disableSearchDomain: true
-    ipAddress: 136.243.8.106
-    controlPlane: true
-    installDisk: /dev/sda
-    nameserver: 136.243.8.65
-    networkInterfaces:
-      - interface: enp5s0
-        dhcp: true
-        vlans:
-          - vlanId: 4000
-            mtu: 1400
-            dhcp: false
-            addresses:
-              - 10.1.1.10/24
   - hostname: varda.hsn.dev
     disableSearchDomain: true
-    ipAddress: 136.243.88.216
+    ipAddress: 10.2.1.10
     controlPlane: true
     installDisk: /dev/sda
     networkInterfaces:
-      - interface: enp5s0
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.10/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
         dhcp: true
-        vlans:
-          - vlanId: 4000
-            mtu: 1400
-            dhcp: false
-            addresses:
-              - 10.1.1.11/24
+        addresses:
+          - 192.168.20.10/32
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+  - hostname: manwe.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.11
+    controlPlane: true
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.11/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        addresses:
+          - 192.168.20.10/24
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+  - hostname: aule.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.12
+    controlPlane: true
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.12/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        addresses:
+          - 192.168.20.10/24
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+  - hostname: ulmo.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.13
+    controlPlane: false
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.13/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        addresses:
+          - 192.168.20.10/24
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+
 controlPlane:
   patches:
     - |-
@@ -50,10 +110,10 @@ controlPlane:
           disabled: true
         etcd:
           advertisedSubnets:
-            - 10.1.1.0/24
+            - 10.2.1.0/24
         extraManifests:
-          - https://raw.githubusercontent.com/jahanson/home-ops/main/infrastructure/talos/morgoth/integrations/cni/cilium.yaml
-          - https://raw.githubusercontent.com/jahanson/home-ops/main/infrastructure/talos/morgoth/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
+          - https://raw.githubusercontent.com/jahanson/masto-ops/main/infrastructure/talos/valinor/integrations/cni/cilium.yaml
+          - https://raw.githubusercontent.com/jahanson/masto-ops/main/infrastructure/talos/valinor/integrations/kubelet-csr-approver/kubelet-csr-approver.yaml
     - |-
       machine:
         files:
@@ -70,18 +130,13 @@ controlPlane:
             rotate-server-certificates: "true"
           extraConfig:
             maxPods: 150
-        network:
-          extraHostEntries:
-            - ip: ${clusterEndpointIP}
-              aliases:
-                - morgoth.jahanson.tech
         sysctls:
           fs.inotify.max_user_watches: "1048576"
           fs.inotify.max_user_instances: "8192"
         time:
           disabled: false
           servers:
-            - 10.1.1.1
+            - time.cloudflare.com
     - |-
       - op: remove
         path: /cluster/apiServer/admissionControl
