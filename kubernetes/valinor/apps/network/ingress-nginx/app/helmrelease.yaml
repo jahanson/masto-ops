@@ -64,6 +64,8 @@ spec:
         proxy-buffer-size: "16k"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
+        plugins: "crowdsec"
+        lua-shared-dicts: "crowdsec_cache: 50m"
 
       metrics:
         enabled: true
@@ -97,6 +99,30 @@ spec:
         requests:
           cpu: 23m
           memory: 381M
+
+      # Crowdsec Bouncer Plugin
+      extraVolumes:
+        - name: crowdsec-bouncer-plugin
+          emptyDir: {}
+      extraInitContainers:
+        - name: init-clone-crowdsec-bouncer
+          image: crowdsecurity/lua-bouncer-plugin
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: API_URL
+              value: "http://crowdsec-service.security.svc.cluster.local:8080"
+            - name: API_KEY
+              value: "966243e72e69705684d9e9d2f6e87ddc"
+            - name: BOUNCER_CONFIG
+              value: "/crowdsec/crowdsec-bouncer.conf"
+          command: ['sh', '-c', "sh /docker_start.sh; mkdir -p /lua_plugins/crowdsec/; cp -R /crowdsec/* /lua_plugins/crowdsec/"]
+          volumeMounts:
+            - name: crowdsec-bouncer-plugin
+              mountPath: /lua_plugins
+      extraVolumeMounts:
+        - name: crowdsec-bouncer-plugin
+          mountPath: /etc/nginx/lua/plugins/crowdsec
+          subPath: crowdsec
 
     defaultBackend:
       enabled: false
