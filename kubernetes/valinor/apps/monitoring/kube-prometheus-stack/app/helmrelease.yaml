@@ -46,7 +46,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: kube-prometheus-stack-secrets
-                      key: HEARTBEAT_URL
+                      key: heartbeat_url
                 send_resolved: true
           - name: "null" # quote
           - name: pushover
@@ -56,12 +56,12 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: kube-prometheus-stack-secrets
-                      key: ALERTMANAGER_PUSHOVER_API_TOKEN
+                      key: pushover_api_token
                 user_key:
                   valueFrom:
                     secretKeyRef:
                       name: kube-prometheus-stack-secrets
-                      key: ALERTMANAGER_PUSHOVER_API_USERKEY
+                      key: pushover_api_userkey
                 send_resolved: true
                 html: true
                 sound: gamelan
