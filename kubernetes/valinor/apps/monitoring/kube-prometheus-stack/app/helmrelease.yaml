@@ -236,4 +236,5 @@ spec:
       valuesKey: BUCKET_NAME
     - kind: Secret
       name: alertmanager-secret
+      valuesKey: values.yaml
       optional: false
