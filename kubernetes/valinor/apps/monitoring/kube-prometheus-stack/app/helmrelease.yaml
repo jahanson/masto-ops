@@ -42,11 +42,14 @@ spec:
         receivers:
           - name: heartbeat
             webhook_configs:
-              - send_resolved: true
+              - url: "${SECRET_HEALTHCHECKS_WEBHOOK}"
+                send_resolved: true
           - name: "null" # quote
           - name: pushover
             pushover_configs:
               - url_title: View in Alertmanager
+                token: "${SECRET_PUSHOVER_ALERT_MANAGER_APIKEY}"
+                user_key: "${SECRET_PUSHOVER_USERKEY}"
                 send_resolved: true
                 html: true
                 sound: gamelan
@@ -234,7 +237,3 @@ spec:
       kind: ConfigMap
       name: thanos-bucket-v1
       valuesKey: BUCKET_NAME
-    - kind: Secret
-      name: alertmanager-secret
-      valuesKey: values.yaml
-      optional: false
