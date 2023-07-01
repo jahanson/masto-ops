@@ -42,26 +42,11 @@ spec:
         receivers:
           - name: heartbeat
             webhook_configs:
-              - url:
-                  valueFrom:
-                    secretKeyRef:
-                      name: kube-prometheus-stack-secrets
-                      key: heartbeat_url
-                send_resolved: true
+              - send_resolved: true
           - name: "null" # quote
           - name: pushover
             pushover_configs:
               - url_title: View in Alertmanager
-                token:
-                  valueFrom:
-                    secretKeyRef:
-                      name: kube-prometheus-stack-secrets
-                      key: pushover_api_token
-                user_key:
-                  valueFrom:
-                    secretKeyRef:
-                      name: kube-prometheus-stack-secrets
-                      key: pushover_api_userkey
                 send_resolved: true
                 html: true
                 sound: gamelan
@@ -249,3 +234,6 @@ spec:
       kind: ConfigMap
       name: thanos-bucket-v1
       valuesKey: BUCKET_NAME
+    - kind: Secret
+      name: alertmanager-secret
+      optional: false
