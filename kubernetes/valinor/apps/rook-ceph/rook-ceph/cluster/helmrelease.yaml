@@ -34,7 +34,7 @@ spec:
       resources:
         mgr:
           requests:
-            cpu: "500m"
+            cpu: "1000m"
             memory: "549M"
           limits:
             memory: "1219M"
@@ -52,7 +52,7 @@ spec:
             memory: "5944M"
         mgr-sidecar:
           requests:
-            cpu: "500m"
+            cpu: "700m"
             memory: "94M"
           limits:
             memory: "208M"
