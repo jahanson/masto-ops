@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
  - bitnami.yaml
  - bjw-s.yaml
+ - crowdsec.yaml
  - elastic.yaml
  - external-secrets.yaml
  - fairwinds.yaml
