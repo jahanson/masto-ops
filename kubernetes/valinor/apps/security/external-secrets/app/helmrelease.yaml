@@ -19,3 +19,6 @@ spec:
     installCRDs: true
     replicaCount: 3
     leaderElect: true
+    serviceMonitor:
+      enabled: true
+      interval: 1m
