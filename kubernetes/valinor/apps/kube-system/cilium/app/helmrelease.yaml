@@ -33,17 +33,17 @@ spec:
           tls:
             - hosts:
                 - *host
-    #   metrics:
-    #     serviceMonitor:
-    #       enabled: true
-    #   relay:
-    #     prometheus:
-    #       serviceMonitor:
-    #         enabled: true
-    # prometheus:
-    #   serviceMonitor:
-    #     enabled: true
-    # operator:
-    #   prometheus:
-    #     serviceMonitor:
-    #       enabled: true
+      metrics:
+        serviceMonitor:
+          enabled: true
+      relay:
+        prometheus:
+          serviceMonitor:
+            enabled: true
+    prometheus:
+      serviceMonitor:
+        enabled: true
+    operator:
+      prometheus:
+        serviceMonitor:
+          enabled: true
