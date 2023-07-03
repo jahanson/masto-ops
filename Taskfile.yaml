@@ -52,3 +52,5 @@ tasks:
         weaveworks/tap/gitops
         yamllint
         yq
+        cilium-cli
+        lazygit
