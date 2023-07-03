@@ -92,6 +92,11 @@ spec:
           gnetId: 2842
           revision: 16
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15038-external-dns/
+        external-dns:
+          gnetId: 15038
+          revision: 1
+          datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
           datasource: Prometheus
