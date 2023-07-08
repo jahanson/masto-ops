@@ -1,0 +1,52 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dragonfly-valinor
+  namespace: fediverse
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: dragonfly
+      version: v1.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: dragonflydb
+        namespace: flux-system
+
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
+    storage:
+      enabled: true
+      requests: 128Mi # Set as desired
+
+    extraArgs:
+      - --dbfilename=dump.rdb
+      - --save_schedule=*:* # HH:MM glob format
+
+    serviceMonitor:
+      enabled: true
+
+    prometheusRule:
+      enabled: true
+      spec:
+        - alert: DragonflyMissing
+          expr: absent(dragonfly_uptime_in_seconds) == 1
+          for: 0m
+          labels:
+            severity: critical
+          annotations:
+            summary: Dragonfly is missing
+            description: "Dragonfly is missing"
