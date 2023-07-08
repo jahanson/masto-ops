@@ -40,8 +40,8 @@ spec:
     service:
       main:
         enabled: false
-    nodeSelector:
-      doks.digitalocean.com/node-pool: pool-valinor
+    # nodeSelector:
+    #   doks.digitalocean.com/node-pool: pool-valinor
     resources:
       requests:
         cpu: 1000m
