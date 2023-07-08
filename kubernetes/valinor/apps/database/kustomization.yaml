@@ -7,3 +7,4 @@ resources:
   # Flux-Kustomizations
   - ./cockroachdb/ks.yaml
   - ./dragonflydb/ks.yaml
+  - ./cloudnative-pg/ks.yaml
