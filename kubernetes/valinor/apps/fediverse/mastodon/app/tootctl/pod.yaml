@@ -16,7 +16,7 @@ spec:
         - name: DB_NAME
           value: "mastodon"
         - name: DB_PORT
-          value: "26257"
+          value: "5432"
 
       resources:
         limits:
