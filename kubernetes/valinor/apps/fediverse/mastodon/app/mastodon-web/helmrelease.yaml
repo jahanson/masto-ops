@@ -40,7 +40,7 @@ spec:
           name: mastodon-secret
     env:
       DB_NAME: "$(CP_MASTODON_WEB)"
-      DB_PORT: "25061"
+      DB_PORT: "$(DB_PORT)"
       PREPARED_STATEMENTS: "false" # neccessary for pgbouncer
     resources:
       requests:
