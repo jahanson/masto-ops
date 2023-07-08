@@ -10,10 +10,10 @@ metadata:
     app.kubernetes.io/created-by: dragonfly-operator
   name: dragonfly-valinor
 spec:
-  template:
-    spec:
-      nodeSelector:
-        doks.digitalocean.com/node-pool: pool-dragonfly
+  # template:
+  #   spec:
+  #     nodeSelector:
+  #       doks.digitalocean.com/node-pool: pool-dragonfly
   replicas: 2
   resources:
     requests:
