@@ -5,7 +5,6 @@ metadata:
   name: mastodon-ingress
   namespace: fediverse
   annotations:
-    external-dns.alpha.kubernetes.io/target: ingress.valinor.social
     nginx.org/websocket-services: "mastodon-streaming"
 spec:
   ingressClassName: "nginx"
