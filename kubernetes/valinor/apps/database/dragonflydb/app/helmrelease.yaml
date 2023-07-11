@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: dragonfly
-      version: v1.4.0
+      version: v1.6.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -33,7 +33,7 @@ spec:
       requests: 128Mi # Set as desired
 
     extraArgs:
-      - --dbfilename=dump.rdb
+      - --dbfilename=dump
       - --save_schedule=*:* # HH:MM glob format
 
     serviceMonitor:
