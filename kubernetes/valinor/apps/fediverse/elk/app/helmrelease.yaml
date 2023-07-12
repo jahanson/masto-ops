@@ -63,7 +63,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: elk-config
+        # existingClaim: elk-config
         mountPath: /elk/data
 
     resources:
