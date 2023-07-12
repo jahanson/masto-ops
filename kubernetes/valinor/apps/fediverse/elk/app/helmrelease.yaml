@@ -27,9 +27,9 @@ spec:
 
     env:
       NUXT_PUBLIC_DEFAULT_SERVER: "valinor.social"
-    envFrom:
-      - secretRef:
-          name: elk-secret
+    # envFrom:
+    #   - secretRef:
+    #       name: elk-secret
 
     podSecurityContext:
       runAsUser: 911
@@ -60,11 +60,11 @@ spec:
           - hosts:
               - *host
 
-    # persistence:
-    #   config:
-    #     enabled: true
-    #     existingClaim: elk-config
-    #     mountPath: /elk/data
+    persistence:
+      config:
+        enabled: true
+        existingClaim: elk-config
+        mountPath: /elk/data
 
     resources:
       requests:
