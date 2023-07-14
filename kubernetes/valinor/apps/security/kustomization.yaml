@@ -5,4 +5,5 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./crowdsec/ks.yaml
   - ./external-secrets/ks.yaml
