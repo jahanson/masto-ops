@@ -22,8 +22,8 @@ spec:
       acquisition:
         - namespace: network
           podName: ingress-nginx-controller-*
-      # as in crowdsec configuration, we need to specify the program name so the parser will match and parse logs
-      program: nginx
+          program: nginx
+
       env:
       # As we are running Nginx, we want to install the Nginx collection
         - name: COLLECTIONS
