@@ -31,7 +31,7 @@ spec:
         component: sidekiq
     image:
       repository: ghcr.io/mastodon/mastodon
-      tag: v4.1.4@sha256:abcbac50f7bf55187f262b7c819e0b1f8260c3a2746578946856c7313f5174bb
+      tag: v4.1.5@sha256:61e4dc0026605003be8f26a0008f244fc7b3c4f0dfcf1c5d8f3ef7630d46f90d
     command: ["bundle", "exec", "sidekiq", "-c", "25", "-q", "ingress"]
     envFrom:
       - secretRef:
