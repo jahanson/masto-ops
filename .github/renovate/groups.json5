@@ -13,6 +13,17 @@
       separateMinorPatch: true,
     },
     {
+      description: "Mastodon images",
+      groupName: "Mastodon",
+      matchPackagePatterns: ["mastodon", "^ghcr.io/mastodon/"],
+      matchDatasources: ["docker", "github-tags"],
+      versioning: "semver",
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
+      },
+      separateMinorPatch: true,
+    },
+    {
       description: "1Password Connect images",
       groupName: "1password-connect",
       matchPackageNames: [
