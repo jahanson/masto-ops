@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: mastodon-tootctl
-      image: tootsuite/mastodon:latest
+      image: tootsuite/mastodon:latest@sha256:abcbac50f7bf55187f262b7c819e0b1f8260c3a2746578946856c7313f5174bb
       command: ["/bin/bash", "-c", "--"]
       args: ["while true; do sleep 30; done;"]
       envFrom:
