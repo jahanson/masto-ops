@@ -28,7 +28,7 @@ spec:
         component: streaming
     image:
       repository: ghcr.io/mastodon/mastodon
-      tag: v4.1.4
+      tag: v4.1.4@sha256:abcbac50f7bf55187f262b7c819e0b1f8260c3a2746578946856c7313f5174bb
     command: [
       "node",
       "./streaming"
