@@ -189,7 +189,7 @@ spec:
             port: 80
             resources:
               requests:
-                cpu: 100m
+                cpu: 2000m
                 memory: 512Mi
               limits:
                 memory: 3Gi
