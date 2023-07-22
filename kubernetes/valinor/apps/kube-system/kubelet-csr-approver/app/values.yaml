@@ -1,5 +1,5 @@
 ---
 providerRegex: |
-  ^(manwe|varda)$
+  ^(manwe|varda|aule)$
 
 bypassDnsResolution: true
