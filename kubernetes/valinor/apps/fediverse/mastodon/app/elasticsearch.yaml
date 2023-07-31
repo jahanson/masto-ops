@@ -12,7 +12,7 @@ spec:
         disabled: true
   nodeSets:
     - name: default
-      count: 1
+      count: 2
       config:
         node.store.allow_mmap: false
         xpack.security.authc:
@@ -29,8 +29,7 @@ spec:
                   cpu: 62m
                   memory: 512Mi
                 limits:
-                  cpu: 342m
-                  memory: 2Gi
+                  memory: 8Gi
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
