@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
 
   values:
+    replicaCount: 2
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
