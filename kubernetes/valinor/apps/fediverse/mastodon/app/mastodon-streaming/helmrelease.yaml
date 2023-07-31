@@ -38,6 +38,7 @@ spec:
           name: mastodon-secret
     env:
       NODE_TLS_REJECT_UNAUTHORIZED: "0"
+      DB_SSLMODE: "no-verify"
       DB_NAME: "$(CP_MASTODON_STREAMING)"
       DB_PORT: "25061"
       PREPARED_STATEMENTS: "false" # neccessary for pgbouncer
