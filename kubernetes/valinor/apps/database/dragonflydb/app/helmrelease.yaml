@@ -33,6 +33,12 @@ spec:
       enabled: true
       requests: 128Mi # Set as desired
 
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 6Gi
+      limits:
+        memory: 8Gi
     extraArgs:
       - --dbfilename=dump
       - --save_schedule=*:* # HH:MM glob format
