@@ -18,6 +18,7 @@ Thumbs.db
 ## .tfstate files
 *.tfstate
 *.tfstate.*
+*.tfvars
 
 ## terraform plan output
 *tfplan*
