@@ -56,7 +56,7 @@ nodes:
           - network: 0.0.0.0/0 # The route's network (destination).
             gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
             metric: 1024
-  - hostname: aule.hsn.dev
+  - hostname: nienna.hsn.dev
     disableSearchDomain: true
     ipAddress: 10.2.1.12
     controlPlane: true
@@ -72,8 +72,66 @@ nodes:
             metric: 2048
       - interface: eth1
         dhcp: true
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+  - hostname: orome.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.13
+    controlPlane: false
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
         addresses:
-          - 192.168.20.10/24
+          - 10.2.1.13/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+  - hostname: vaire.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.14
+    controlPlane: false
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.14/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0 # The route's network (destination).
+            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+            metric: 1024
+  - hostname: yavanna.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.15
+    controlPlane: false
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.15/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            metric: 2048
+      - interface: eth1
+        dhcp: true
         routes:
           - network: 0.0.0.0/0 # The route's network (destination).
             gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
