@@ -19,7 +19,7 @@ nodes:
     disableSearchDomain: true
     ipAddress: 10.2.1.10
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     networkInterfaces:
       - interface: eth0
         dhcp: false
@@ -41,7 +41,7 @@ nodes:
     disableSearchDomain: true
     ipAddress: 10.2.1.11
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     networkInterfaces:
       - interface: eth0
         dhcp: false
