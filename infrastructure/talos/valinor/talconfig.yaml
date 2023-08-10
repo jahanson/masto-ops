@@ -3,16 +3,19 @@ clusterName: valinor
 
 talosVersion: v1.4.7
 kubernetesVersion: 1.27.3
-endpoint: "https://valinor.hsn.dev:6443"
+endpoint: "https://${clusterEndpointIP}:6443"
 
 cniConfig:
   name: none
 
+additionalApiServerCertSans:
+  - ${clusterEndpointIP}
+
 additionalMachineCertSans:
-  - valinor.hsn.dev
+  - ${clusterEndpointIP}
 
 nodes:
-  - hostname: varda.hsn.dev
+  - hostname: eonwe.hsn.dev
     disableSearchDomain: true
     ipAddress: 10.2.1.10
     controlPlane: true
@@ -34,7 +37,7 @@ nodes:
           - network: 0.0.0.0/0 # The route's network (destination).
             gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
             metric: 1024
-  - hostname: manwe.hsn.dev
+  - hostname: arlen.hsn.dev
     disableSearchDomain: true
     ipAddress: 10.2.1.11
     controlPlane: true
@@ -46,15 +49,15 @@ nodes:
           - 10.2.1.11/24
         routes:
           - network: 10.2.0.0/16
-            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            gateway: 10.2.1.1
             metric: 2048
       - interface: eth1
         dhcp: true
         addresses:
           - 192.168.20.10/24
         routes:
-          - network: 0.0.0.0/0 # The route's network (destination).
-            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
             metric: 1024
   - hostname: nienna.hsn.dev
     disableSearchDomain: true
@@ -68,13 +71,13 @@ nodes:
           - 10.2.1.12/24
         routes:
           - network: 10.2.0.0/16
-            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            gateway: 10.2.1.1
             metric: 2048
       - interface: eth1
         dhcp: true
         routes:
-          - network: 0.0.0.0/0 # The route's network (destination).
-            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
             metric: 1024
   - hostname: orome.hsn.dev
     disableSearchDomain: true
@@ -88,13 +91,13 @@ nodes:
           - 10.2.1.13/24
         routes:
           - network: 10.2.0.0/16
-            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            gateway: 10.2.1.1
             metric: 2048
       - interface: eth1
         dhcp: true
         routes:
-          - network: 0.0.0.0/0 # The route's network (destination).
-            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
             metric: 1024
   - hostname: vaire.hsn.dev
     disableSearchDomain: true
@@ -108,13 +111,13 @@ nodes:
           - 10.2.1.14/24
         routes:
           - network: 10.2.0.0/16
-            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            gateway: 10.2.1.1
             metric: 2048
       - interface: eth1
         dhcp: true
         routes:
-          - network: 0.0.0.0/0 # The route's network (destination).
-            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
             metric: 1024
   - hostname: yavanna.hsn.dev
     disableSearchDomain: true
@@ -128,13 +131,133 @@ nodes:
           - 10.2.1.15/24
         routes:
           - network: 10.2.0.0/16
-            gateway: 10.2.1.1 # The route's gateway (if empty, creates link scope route).
+            gateway: 10.2.1.1
             metric: 2048
       - interface: eth1
         dhcp: true
         routes:
-          - network: 0.0.0.0/0 # The route's network (destination).
-            gateway: 192.168.20.1 # The route's gateway (if empty, creates link scope route).
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
+            metric: 1024
+  - hostname: este.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.16
+    controlPlane: false
+    installDisk: /dev/vda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.16/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
+            metric: 1024
+  - hostname: nessa.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.17
+    controlPlane: false
+    installDisk: /dev/vda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.17/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
+            metric: 1024
+  - hostname: vana.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.18
+    controlPlane: false
+    installDisk: /dev/vda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.18/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
+            metric: 1024
+  - hostname: ilmare.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.19
+    controlPlane: false
+    installDisk: /dev/vda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.19/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
+            metric: 1024
+  - hostname: mairon.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.20
+    controlPlane: false
+    installDisk: /dev/vda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.20/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
+            metric: 1024
+  - hostname: tirion.hsn.dev
+    disableSearchDomain: true
+    ipAddress: 10.2.1.21
+    controlPlane: false
+    installDisk: /dev/vda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: false
+        addresses:
+          - 10.2.1.21/24
+        routes:
+          - network: 10.2.0.0/16
+            gateway: 10.2.1.1
+            metric: 2048
+      - interface: eth1
+        dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.20.1
             metric: 1024
 
 controlPlane:

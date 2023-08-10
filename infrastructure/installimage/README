@@ -1,0 +1,3 @@
+# Hetzner Installimage
+
+[Installimage](https://github.com/hetzneronline/installimage) is an open source tool to create servers from a template. I use this on hetzner servers as this is the primary method they use to provision the OS on the dedicated machines they provide.

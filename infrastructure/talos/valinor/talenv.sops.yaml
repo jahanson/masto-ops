@@ -1,4 +1,4 @@
-clusterEndpointIP: ENC[AES256_GCM,data:dHbXOF7IB9uMGAo=,iv:lNqhMULGsgjtguao8C9Qd5LyY2gB7b8Do2mNwcI4fIY=,tag:N3Y/lzn8qud6m7ynvUxu+g==,type:str]
+clusterEndpointIP: ENC[AES256_GCM,data:vudX/C9/rMk=,iv:VBoYsAH8s3BQn6MUHNc/sF1iHXZ6tjkx5TRsLj3G7M0=,tag:wYv5c2WomtPYhvu9lHjSeg==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -8,14 +8,14 @@ sops:
         - recipient: age1f5pr5rss0n8z4d6r8kky9umr5g48tt03reuyjushw5kayrpsxvgsw80gsj
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBMZEQrZHpJY2haT3IzNE5H
-            eXd5WEM0b24rN2VxUEEvb01lNFhnMm9pZENVCk1sQU1wS2RNR05mdzd1dE84OGgv
-            ZjNTdXRSQitUd0xuRFZjMlI5S2V1dzQKLS0tICtTMS9qNXoza3RmaHdtK0piOTg5
-            YzhqSjFoSEh4alc3cm9Hb25nSHNTb2cKUh6VpQrDnNyVvvBJwTfPFnA3qE6/HKBC
-            ccrT5Piagns5hjx5vXF9VZprqHyOyWAqOFehXRE5LlriIe9FE3Skdw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxRzBTNjZNY2xPZ3lhRW56
+            VUxDN3I5Y0NsbDB3Q2tzSVlwNitoNmtqVzJZCjB5TlRTTTIyMDl0Nk5lNDVXakJX
+            b1lSWHBZQXJ0ak5wUTVLc2JGY25yakUKLS0tIFl0N2FXd3k2Z0hpamhxWHlrbXF3
+            ODdwc2h5dzR3OTZGVFFldlhaNHVHM2cKtuC6f9hUk5fRTh1lc0Ha1eX1d4NxusTK
+            P06g6Nbtdy8WVxwy/6HJW0QrFBokEM2k6I0JRKXhtPotErLNEcWfMw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-06-29T15:34:52Z"
-    mac: ENC[AES256_GCM,data:5Kpjb7CiJ777rv9Ey3viqU3AvtdNxDOSp+2F5UK1iOJa9JNFScQ/7oAuMs0Lh05pWRi9CP0htXvt4ceAcA/jQcvUmtV54RwU3yaOZY+QquE166sw6+8mAg+BG1IQjwg3JbL7GZwApMH3ZKdqDL8UXMB9CDEQnKBjmT1CJNNIRBk=,iv:2XV1LbZxTFxmMxwnbAduzGXAGmv6x1uGh7LgSbei5e0=,tag:VJ1NidaN922/92xT7P0+UA==,type:str]
+    lastmodified: "2023-08-09T17:16:35Z"
+    mac: ENC[AES256_GCM,data:dhD3dyj/Baw3OR1s6GttDZnntCGKhVMkB27cDimIhFkTT0+F0QLBvGA+ag04CIhvz3OPbHYGPgn/VUNaho6FmjHJqu0QfTALK8ttgycqlCoE+iMc7g0DTA5+/sB76OGrTI/uG5mdtNe2QCR0eql328a4qrUY0v8RAeWsO+uylAc=,iv:jp/EauWbO1LyOi0KKIywz68W40YwLKYayKycBsPvMAw=,tag:uR4G92FTvEjpMrCj5UNURQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

@@ -3,7 +3,8 @@ set -o pipefail
 
 source minimal_network.functions.sh
 
-IFACE_NAME="$(udevadm info -e | grep -m1 -A 20 ^P.*eth0 | grep ID_NET_NAME_PATH | cut -d'=' -f2)"
+# Get the first interface name that is not lo
+IFACE_NAME="$(ip -o link show | awk -F': ' '{print $2}' | grep -v lo | head -n1)"
 IPV4_ADDRS=($(network_interface_ipv4_addrs "$IFACE_NAME"))
 IPV6_ADDRS=($(network_interface_ipv6_addrs "$IFACE_NAME"))
 MAIN_IPV4_CIDR="${IPV4_ADDRS[0]}"
@@ -43,6 +44,9 @@ iface #IFACE_NAME# inet static
 iface enp5s0 inet6 static
     address #MAIN_IPV6_CIDR#
     gateway #MAIN_IPV6_GW#
+
+auto #IFACE_NAME#.4010
+iface #IFACE_NAME#.4010 inet manual
 
 auto vmbr0
 iface vmbr0 inet manual
