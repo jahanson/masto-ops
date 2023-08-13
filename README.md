@@ -1,4 +1,7 @@
 # masto-ops
+
+Note: [Moved](https://github.com/jahanson/valinor/) to k3s from Talos
+
 Mastodon on Kubernetes
 
 Built with inspiration from the [k8s@home community](https://discord.gg/k8s-at-home) as a whole and extra credit to bjw-s and ondr0p. I found this community due to their repos and have largely based my structure from bjw-s.
